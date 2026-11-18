@@ -24,7 +24,7 @@ The gate voltages are from a poly resistor string fed by about 2.2 µA:
 ```
 g4 ─3R─ g3 ─3R─ g2 ─3R─ g1 ─3R─ vcm ─11R─ GND (vcm ≈ 1.2 V, steps ≈ 0.33 V)
 ```
-0.33 V per rung is enough to saturate each one, vcm also decides how much voltage the tail mirror gets. In rev A vcm was 0.98 V and the post-layout corner sweep showed the tail mirror dropping out of saturation at high resonance codes in ss / cold /. 3.0 V. Rev B has two resistor units under vcm (1.2 V) and the sweep is clean.
+0.33 V per rung is enough to saturate each one, vcm also decides how much voltage the tail mirror gets. Design has two resistor units under vcm (1.2 V) and the sweep is clean.
 
 ### Capacitors
 Each pole has PMOS gate caps (W 14 µm,. L 20 µm) from ladder nodes to VDPWR about 3.4 pF/pole. The nodes are 1.3–2 V below VDPWR so the caps are in strong inversion and their value doesn’t change with signal. Each is split in two and placed P N N P.
@@ -48,6 +48,8 @@ Mirrors are common-centroid with dummies at both ends. Input pair, rungs, feedba
 
 ## How to test
 
+Either use the testboard or use lab instruments to setup the pins.
+
 | Pin | Use |
 |---|---|
 | `ua[0]` VIN | audio in, AC-coupled (1 µF or more), 10–40 mV peak |
@@ -65,7 +67,7 @@ Mirrors are common-centroid with dummies at both ends. Input pair, rungs, feedba
    (both ≈2.45 V DC), for example with an instrumentation amplifier, or
    AC-coupled from ua[1] alone.
 5. Step `ui_in[3:0]` from 0 up to about 5 for increasing resonance. From about
-   7 up it self-oscillates (6–9 depending on process, temperature and supply).
+   7 up it self-oscillates.
 
 ## External hardware
 3.3 V supply (TT demo board), audio source, resistor or current source for IREF, scope,. switches on `ui_in[3:0]`.
