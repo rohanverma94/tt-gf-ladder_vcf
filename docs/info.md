@@ -48,7 +48,7 @@ Mirrors are common-centroid with dummies at both ends. Input pair, rungs, feedba
 
 ## How to test
 
-Either use the testboard or use lab instruments to setup the pins.
+Note that VDPWR is 3.3 V fro GF180MCUD. Either use the testboard or use lab instruments to setup the pins as follows -
 
 | Pin | Use |
 |---|---|
