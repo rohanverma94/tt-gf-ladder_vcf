@@ -10,6 +10,7 @@ Signal goes up the ladder through the sources. In weak inversion the source impe
 f_pole ≈ I_f / (8π · n · U_T · C)        f(−3 dB) ≈ 0.435 · f_pole
 ```
 Cutoff follows I_f and nothing else so 2x current is +1 octave. From extracted. layout, 27 °C, resonance off:
+
 | IREF | 2.5 nA | 25 nA | 250 nA | 1.25 µA | 10 µA |
 |---|---|---|---|---|---|
 | Cutoff | 18 Hz | 170 Hz | 1.6 kHz | 7.2 kHz | 48 kHz |
@@ -21,7 +22,7 @@ IREF goes through a mirror tree (L = 4 µm devices) which divides it into u = IR
 The gate voltages are from a poly resistor string fed by about 2.2 µA:
 
 ```
-g4 ─3R─ g3 ─3R─ g2 ─3R─ g1 ─3R─ vcm ─11R─ GND      (vcm ≈ 1.2 V, steps ≈ 0.33 V)
+g4 ─3R─ g3 ─3R─ g2 ─3R─ g1 ─3R─ vcm ─11R─ GND (vcm ≈ 1.2 V, steps ≈ 0.33 V)
 ```
 0.33 V per rung is enough to saturate each one, vcm also decides how much voltage the tail mirror gets. In rev A vcm was 0.98 V and the post-layout corner sweep showed the tail mirror dropping out of saturation at high resonance codes in ss / cold /. 3.0 V. Rev B has two resistor units under vcm (1.2 V) and the sweep is clean.
 
@@ -54,12 +55,17 @@ Mirrors are common-centroid with dummies at both ends. Input pair, rungs, feedba
 | `ua[3]` IREF | sink 2.5 nA – 10 µA into it; pin is at ~0.6 V |
 | `ui_in[3:0]` | resonance, 0–15 |
 
-1. VDPWR = 3.3 V. No clock or reset needed.
-2. Set IREF. A resistor from 3.3 V is OK: R ≈ 2.7 V / IREF. 2.2 MΩ gives about. 1.25 µA, cut off around 7 kHz.
-3. AC-couple audio into VIN. Input bias takes a few seconds to settle after power-up (1 µF × 1.4 MΩ).
-Measure OUTP − OUTN with an in-amp or two scope channels in subtract mode.
-4. Step `ui_in` up from 0. The peak at cutoff grows and somewhere around code 7 it keeps oscillating with the input disconnected. IREF sets then the oscillation frequency.
-5. Expect a few mV offset between the outputs, a few % cutoff spread between chips and. about −0.25 %/°C. Below ~25 nA leakage on the board side of IREF pin (a few nA). starts to matter; calibrate against measured cutoff there.
+1. Power VDPWR = 3.3 V.
+2. Sink a current into **ua[3] (IREF)**. A resistor to 3.3 V works (≈ 2.7 V / I).
+   With `ui_in[3:0] = 0`, f₋₃dB ≈ 5 kHz per µA of IREF (18 Hz at 2.5 nA to 48 kHz at 10 µA); see the README for the
+   full curve.
+3. AC-couple an audio signal (≥ 1 µF, ~10–40 mV peak) into **ua[0] (VIN)**. An
+   on-chip ≈1.4 MΩ resistor biases it.
+4. Take the output differentially between **ua[1] (OUTP)** and **ua[2] (OUTN)**
+   (both ≈2.45 V DC), for example with an instrumentation amplifier, or
+   AC-coupled from ua[1] alone.
+5. Step `ui_in[3:0]` from 0 up to about 5 for increasing resonance. From about
+   7 up it self-oscillates (6–9 depending on process, temperature and supply).
 
 ## External hardware
 3.3 V supply (TT demo board), audio source, resistor or current source for IREF, scope,. switches on `ui_in[3:0]`.
