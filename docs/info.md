@@ -43,12 +43,9 @@ VIN is biased to vcm through 20 resistor units (1.4 MΩ) so just AC-couple into 
 
 Each pole-4 node drives a PMOS source follower (about 17 µA each in its own n-well with body tied to source). Outputs sit at VDPWR − 0.85 V = about 2.4 V Take OUTP − OUTN. Gain from VIN to differential output is about −6 dB.
 
-### Layout
-Mirrors are common-centroid with dummies at both ends. Input pair, rungs, feedback pair. and followers are ABBA. Guard rings around the ladder, the feedback pair and the cap. n-well. Post-layout Monte Carlo: offset σ ≈ 3.4 mV, cutoff σ ≈ 4.4 %.
-
 ## How to test
 
-Note that VDPWR is 3.3 V fro GF180MCUD. Either use the testboard or use lab instruments to setup the pins as follows -
+Note that VDPWR is 3.3 V for GF180MCUD. Either use the testboard or use lab instruments to setup the pins as follows -
 
 | Pin | Use |
 |---|---|
