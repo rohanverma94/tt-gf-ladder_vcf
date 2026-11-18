@@ -1,6 +1,6 @@
 # Tiny Tapeout project information
 project:
-  title:        "Ladder Voltage-Controlled Filter"      # Project title
+  title:        "Transistor-Ladder VCF"      # Project title
   author:       "Rohan Verma"      # Your name
   discord:      "always_ff_rohan"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "4-pole MOS transistor-ladder (Moog-type) resonant low-pass filter with current-controlled cutoff"      # One line description of what your project does
