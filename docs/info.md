@@ -39,7 +39,7 @@ Loop gain is about code. An ideal ladder oscillates at 4. This one starts. aroun
 Ik is derived from I_f so resonance per code is the same at any cutoff. The feedback pair pulls Ik out of pole 1 and the same code adds Ik to tail of input so ladder current stays at I_f and cutoff doesn’t move when you change resonance.
 
 Input / output
-VIN is biased to vcm through 20 resistor units (1.4 MΩ) so just AC-couple into it. Use 10–40 mV peak. THD at 10 mV is 0.5 % and at 40 mV 2.3 %; above that soft-clips.
+VIN first passes a small CDM clamp at the pad (about 2.2 kΩ of poly and a diode to each rail), then is biased to vcm through 20 resistor units (1.4 MΩ), so just AC-couple into it. Use 10–40 mV peak. THD at 10 mV is 0.5 % and at 40 mV 2.3 %; above that soft-clips.
 
 Each pole-4 node drives a PMOS source follower (about 17 µA each in its own n-well with body tied to source). Outputs sit at VDPWR − 0.85 V = about 2.4 V Take OUTP − OUTN. Gain from VIN to differential output is about −6 dB.
 
